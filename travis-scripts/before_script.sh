@@ -5,3 +5,6 @@ if [ "$TO_TEST" = "BACKEND" ]; then
     mv backend/api/.env.travis backend/api/.env
     python backend/manage.py migrate
 fi
+if [ "$TO_TEST" = "FRONTEND" ] && [ "$TESTS" = "e2e" ]; then
+    npm start -- --silent &
+fi

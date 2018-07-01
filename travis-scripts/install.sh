@@ -5,5 +5,5 @@ if [ "$TO_TEST" = "BACKEND" ]; then
     pip install codecov
 fi
 if [ "$TO_TEST" = "FRONTEND" ]; then
-    cd frontend && npm ci && npm install -g cypress codecov
+    cd frontend && npm install && npm install -g cypress codecov
 fi

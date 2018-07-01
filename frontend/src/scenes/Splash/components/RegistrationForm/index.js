@@ -6,7 +6,7 @@ import FormInput from '../../../../components/FormInput';
 import {FormGroup, Alert, Button, Form} from 'reactstrap';
 import './index.scss';
 
-class RegistrationForm extends Component {
+export class RegistrationForm extends Component {
     render() {
         const errors = this.props.errors || {};
         const {handleSubmit, submitting} = this.props;

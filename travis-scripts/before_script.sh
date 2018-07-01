@@ -6,5 +6,5 @@ if [ "$TO_TEST" = "BACKEND" ]; then
     python backend/manage.py migrate
 fi
 if [ "$TO_TEST" = "FRONTEND" ] && [ "$TESTS" = "e2e" ]; then
-    npm start -- --silent &
+    cd frontend && npm start -- --silent &
 fi

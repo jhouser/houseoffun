@@ -4,7 +4,7 @@ import { reducer as formReducer } from 'redux-form';
 import authReducer from './auth'
 import gameReducer from "./games";
 import coreReducer from "./core";
- 
+/* istanbul ignore next */ 
 const actionPhaseApp = combineReducers({
     router: routerReducer,
     form: formReducer,

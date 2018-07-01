@@ -6,6 +6,7 @@ export function formApiAdapter(dispatch, actionCreator) {
             if (response.error) {
                 throw new SubmissionError(formatErrors(response));
             }
+            return response.payload;
         })
 }
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import PropTypes from 'prop-types';
-import {Field, FieldArray, reduxForm} from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import FormInput from '../../../../components/FormInput';
 import {FormGroup, Alert, Button, Form} from 'reactstrap';
 import './index.scss';

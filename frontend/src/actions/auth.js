@@ -39,7 +39,7 @@ export const refreshAccessToken = (data) => ({
   [RSAA]: {
     endpoint: process.env.REACT_APP_API_ENDPOINT + '/api/auth/token/refresh/',
     method: 'POST',
-    body: JSON.stringify(data),
+    body: JSON.stringify({token: data}),
     headers: { 'Content-Type': 'application/json' },
     types: [
       TOKEN_REQUEST, TOKEN_RECEIVED, TOKEN_FAILURE

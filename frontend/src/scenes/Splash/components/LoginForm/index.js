@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import PropTypes from 'prop-types'
 import FormInput from '../../../../components/FormInput'
 import {FormGroup, Alert, Button, Form} from 'reactstrap'
-import {Field, FieldArray, reduxForm} from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import './index.scss';
 
 export class LoginForm extends Component {

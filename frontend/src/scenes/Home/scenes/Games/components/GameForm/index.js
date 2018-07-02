@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Form, FormGroup, Input, FormText, Label} from 'reactstrap';
+import {Button, Form, FormGroup, FormText, Label} from 'reactstrap';
 import {Field, FieldArray, reduxForm} from 'redux-form';
 import { push } from 'react-router-redux';
 import FormInput from "../../../../../../components/FormInput";

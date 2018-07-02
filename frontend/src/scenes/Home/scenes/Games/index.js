@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Switch} from "react-router-dom";
+import {Switch} from "react-router-dom";
 import PrivateRoute from 'app/containers/PrivateRoute';
 import './index.scss';
 import GameList from "./scenes/GameList";

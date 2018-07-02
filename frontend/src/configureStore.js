@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import { createWhitelistFilter } from 'redux-persist-transform-filter'
-import { routerMiddleware, push } from 'react-router-redux'
+import { routerMiddleware } from 'react-router-redux'
 import { createApiMiddleware } from './middleware/api'
 import storage from 'redux-persist/lib/storage'
 import createHistory from 'history/createBrowserHistory'

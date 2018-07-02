@@ -5,7 +5,7 @@ describe('The login page', function () {
         cy.get('[data-testid="userLoginForm"]').should('exist');
     });
     it('allows a user to login', function () {
-        cy.visit('/');
+        cy.visit('/home/login');
         cy.url().should('include', '/home/login');
     });
 });

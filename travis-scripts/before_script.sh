@@ -6,6 +6,10 @@ if [ "$BACKEND" = 1 ]; then
     python backend/manage.py migrate
 fi
 
+if [ "$FRONTEND" = 1 ]; then
+    mv frontend/.env.travis frontend/.env
+fi
+
 if [ "$TESTS" = "e2e" ]; then
     npm i -g cypress
     cd backend && sh load_fixtures.sh && cd ..

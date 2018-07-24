@@ -7,7 +7,7 @@ if [ "$BACKEND" = 1 ]; then
 fi
 
 if [ "$TESTS" = "e2e" ]; then
-    cd backend && python load_fixtures.sh
+    cd backend && ./load_fixtures.sh
     python backend/manage.py runserver 0.0.0.0:8000 &
     cd frontend && npm start -- --silent &
 fi

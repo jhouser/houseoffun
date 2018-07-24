@@ -1,10 +1,13 @@
 #!/bin/bash
 set -ev
-if [ "$TO_TEST" = "BACKEND" ]; then
+if [ "$BACKEND" = 1 ]; then
     mysql -e 'create database travis_ci;'
     mv backend/api/.env.travis backend/api/.env
     python backend/manage.py migrate
 fi
-if [ "$TO_TEST" = "FRONTEND" ] && [ "$TESTS" = "e2e" ]; then
+
+if [ "$TESTS" = "e2e" ]; then
+    python backend/load_fixtures.sh
+    python backend/manage.py runserver 0.0.0.0:8000 &
     cd frontend && npm start -- --silent &
 fi

@@ -62,13 +62,10 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "jest",
-    "cypress:run": "./node_modules/cypress/bin/cypress run",
-    "cypress:open": "./node_modules/.bin/cypress open"
+    "test": "jest"
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
-    "cypress": "^3.0.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "faker": "^4.1.0",

@@ -20,7 +20,7 @@
   script:
     - if [ "$TESTS" = "backend" ]; then coverage run backend/manage.py test api.app.tests; fi
     - if [ "$TESTS" = "frontend" ]; then cd frontend && yarn test --coverage; fi
-    - if [ "$TESTS" = "e2e" ]; then cd frontend && npm run cypress:run; fi
+    - if [ "$TESTS" = "e2e" ]; then cd frontend && cypress run; fi
   notifications:
     email: false
   after_failure:

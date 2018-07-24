@@ -14,6 +14,6 @@ if [ "$TESTS" = "e2e" ]; then
     npm i -g cypress
     cd backend && sh load_fixtures.sh && cd ..
     python backend/manage.py runserver 0.0.0.0:8000 &
-    wget http://0.0.0.0:8000/api/auth/login
+    wget http://127.0.0.1:8000/api/auth/login
     cd frontend && npm start -- --silent &
 fi

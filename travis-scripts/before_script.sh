@@ -16,6 +16,4 @@ if [ "$TESTS" = "e2e" ]; then
     python manage.py runserver 0.0.0.0:8000 &
     cd ../frontend && npm start -- --silent &
     # Wait for servers to load
-    sleep 10
-    wget http://localhost:8000/api/auth/login/
 fi

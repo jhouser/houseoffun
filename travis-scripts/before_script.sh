@@ -17,5 +17,5 @@ if [ "$TESTS" = "e2e" ]; then
     cd ../frontend && npm start -- --silent &
     # Wait for servers to load
     sleep 10
-    wget https://localhost:8000/api/auth/login
+    wget http://localhost:8000/api/auth/login/
 fi

@@ -29,7 +29,7 @@
     - codecov
   addons:
     artifacts:
-      debug: true
+      target_paths: $TRAVIS_BUILD_NUMBER
       bucket: actionphase-artifacts
       s3_region: us-east-1
       paths:

@@ -30,8 +30,8 @@
   addons:
     artifacts:
       debug: true
-      bucket: actionphase-build-artifacts
-      s3_region: us-east-2
+      bucket: actionphase-artifacts
+      s3_region: us-east-1
       paths:
         - /home/travis/build/jhouser/actionphase/frontend/cypress/videos/
 

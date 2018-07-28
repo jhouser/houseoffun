@@ -30,6 +30,8 @@
   addons:
     artifacts:
       debug: true
+      target_paths: $TRAVIS_BUILD_NUMBER
+      working_dir: WORKING_DIR
       bucket: actionphase-build-artifacts
       s3_region: us-east-1
       paths:

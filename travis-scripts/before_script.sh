@@ -15,5 +15,5 @@ if [ "$TESTS" = "e2e" ]; then
     cd backend && sh load_fixtures.sh
     python manage.py runserver 0.0.0.0:8000 &
     export REACT_API_ENDPOINT=http://localhost:8000
-    cd ../frontend && npm start &
+    cd ../frontend && cat .env && npm start &
 fi

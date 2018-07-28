@@ -9,3 +9,10 @@ describe('The Home Page', function () {
         cy.get('a[href="/home/register"]').should('exist');
     });
 });
+
+describe('The API', function () {
+    it('successfully loads', function () {
+        cy.visit('http://localhost:8000/api/');
+        cy.url().should('include', '/api');
+    });
+});

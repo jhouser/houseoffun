@@ -14,5 +14,6 @@ if [ "$TESTS" = "e2e" ]; then
     npm i -g cypress
     cd backend && sh load_fixtures.sh
     python manage.py runserver 0.0.0.0:8000 &
+    export REACT_API_ENDPOINT=http://localhost:8000
     cd ../frontend && npm start -- --silent &
 fi

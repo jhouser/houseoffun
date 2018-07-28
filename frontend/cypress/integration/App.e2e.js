@@ -12,7 +12,7 @@ describe('The Home Page', function () {
 
 describe('The API', function () {
     it('successfully loads', function () {
-        cy.visit('http://localhost:8000/api/');
+        cy.visit('http://localhost:8000/api/auth/login/');
         cy.url().should('include', '/api');
     });
 });

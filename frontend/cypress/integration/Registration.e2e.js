@@ -8,6 +8,7 @@ describe('The registration page', function () {
         const email = 'test_register@example.com';
         const username = 'test_register';
         const password = 'test_register_password';
+        console.log(process.env.REACT_APP_API_ENDPOINT);
         cy.visit('/home/register');
         cy.get('input[name=email]').type(email);
         cy.get('input[name=username]').type(username);

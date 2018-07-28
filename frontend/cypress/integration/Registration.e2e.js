@@ -9,6 +9,7 @@ describe('The registration page', function () {
         const username = 'test_register';
         const password = 'test_register_password';
         cy.visit('/home/register');
+        cy.wait(2000);
         cy.get('input[name=email]').type(email);
         cy.get('input[name=username]').type(username);
         cy.get('input[name=password1]').type(`${password}`);

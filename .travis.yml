@@ -28,6 +28,9 @@
   after_success:
     - codecov
   addons:
+    apt:
+      packages:
+        - xvfb
     artifacts:
       target_paths: $TRAVIS_BUILD_NUMBER
       bucket: actionphase-artifacts

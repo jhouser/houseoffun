@@ -14,6 +14,6 @@ describe('The registration page', function () {
         cy.get('input[name=password1]').type(`${password}`);
         cy.get('input[name=password2]').type(`${password}`);
         cy.get('input[type=submit]').click();
-        cy.get('[data-testid="logoutButton"]').should('exist');
+        cy.get('[data-testid="logoutButton"]', {timeout: 5000}).should('exist');
     });
 });

@@ -10,7 +10,7 @@ export class RegistrationForm extends Component {
     render() {
         const errors = this.props.errors || {};
         const {handleSubmit, submitting} = this.props;
-        return <div className="registration">
+        return <div className="registration" data-testid="userRegistrationForm">
             <Form onSubmit={handleSubmit}>
                 {
                     errors.non_field_errors ?

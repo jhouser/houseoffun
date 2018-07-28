@@ -5,6 +5,9 @@ describe('The registration page', function () {
         cy.get('[data-testid="userRegistrationForm"]').should('exist');
     });
     it('allows a user to register', function () {
+        cy.window().then((win) => {
+            cy.spy(win.console, "log")
+        });
         const email = 'test_register@example.com';
         const username = 'test_register';
         const password = 'test_register_password';

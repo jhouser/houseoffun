@@ -1,6 +1,7 @@
 import {SubmissionError} from 'redux-form';
 
 export function formApiAdapter(dispatch, actionCreator) {
+    console.log(process.env.REACT_APP_API_ENDPOINT);
     return (...args) =>
         dispatch(actionCreator(...args)).then(response => {
             if (response.error) {

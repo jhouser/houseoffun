@@ -24,6 +24,7 @@ const authReducer = (state = initialState, action) => {
         case auth.LOGIN_FAILURE:
         case auth.REGISTRATION_FAILURE:
         case auth.TOKEN_FAILURE:
+            console.log('Wow registration failed');
             return {
                 access: undefined,
                 errors:

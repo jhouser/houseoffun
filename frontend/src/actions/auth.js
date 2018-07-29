@@ -11,9 +11,17 @@ export const TOKEN_RECEIVED = '@@auth/TOKEN_RECEIVED';
 export const TOKEN_FAILURE = '@@auth/TOKEN_FAILURE';
 export const LOGOUT = '@@auth/LOGOUT';
 
-export const register = (data) => {
-    console.log('Test registration!');
-};
+export const register = (data) => ({
+  [RSAA]: {
+    endpoint: 'http://localhost:8000/api/auth/registration/',
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: { 'Content-Type': 'application/json' },
+    types: [
+      REGISTRATION_REQUEST, REGISTRATION_SUCCESS, REGISTRATION_FAILURE
+    ]
+  }
+});
 
 export const login = (data) => ({
   [RSAA]: {

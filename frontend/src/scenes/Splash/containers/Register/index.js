@@ -17,7 +17,7 @@ const mapStateToProps = state => ({
 });
 /* istanbul ignore next */
 const mapDispatchToProps = dispatch => ({
-    onSubmit: () => {console.log('test submit');}
+    onSubmit: formApiAdapter(dispatch, register)
 });
 /* istanbul ignore next */
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Register));

@@ -1,6 +1,7 @@
 import {SubmissionError} from 'redux-form';
 
 export function formApiAdapter(dispatch, actionCreator) {
+    console.log('another test');
     return (...args) =>
         dispatch(actionCreator(...args)).then(response => {
             if (response.error) {

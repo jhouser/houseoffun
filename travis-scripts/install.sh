@@ -5,7 +5,7 @@ if [ "$BACKEND" = 1 ]; then
     pip install codecov
 fi
 if [ "$FRONTEND" = 1 ]; then
-    npm -g i npm codecov && cd frontend && npm ci
+    npm -g i npm codecov && cd frontend && npm install
 fi
 
 if [ "$TESTS" = "e2e" ]; then

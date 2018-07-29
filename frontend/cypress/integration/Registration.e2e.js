@@ -5,9 +5,9 @@ describe('The registration page', function () {
         cy.get('[data-testid="userRegistrationForm"]').should('exist');
     });
     it('allows a user to register', function () {
-        const email = 'test_register@example.com';
-        const username = 'test_register';
-        const password = 'test_register_password';
+        const email = Math.random().toString(36).substr(2, 5) + '@' + Math.random().toString(36).substr(2, 5) + '.com';
+        const username = Math.random().toString(36).substr(2, 8);
+        const password = Math.random().toString(36).substr(2, 8);
         cy.visit('/home/register');
         cy.wait(2000);
         cy.window().then((win) => {

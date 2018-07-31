@@ -1,4 +1,5 @@
-import { RSAA } from 'redux-api-middleware'
+import { RSAA } from 'redux-api-middleware';
+import axios from 'axios';
 
 export const REGISTRATION_REQUEST = '@@auth/REGISTRATION_REQUEST';
 export const REGISTRATION_SUCCESS = '@@auth/REGISTRATION_SUCCESS';
@@ -11,17 +12,18 @@ export const TOKEN_RECEIVED = '@@auth/TOKEN_RECEIVED';
 export const TOKEN_FAILURE = '@@auth/TOKEN_FAILURE';
 export const LOGOUT = '@@auth/LOGOUT';
 
-export const register = (data) => ({
-  [RSAA]: {
-    endpoint: 'http://localhost:8000/api/auth/registration/',
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: { 'Content-Type': 'application/json' },
-    types: [
-      REGISTRATION_REQUEST, REGISTRATION_SUCCESS, REGISTRATION_FAILURE
-    ]
-  }
-});
+export const register = (data) => {
+    return (dispatch) => {
+        dispatch({type: REGISTRATION_REQUEST});
+        return axios.post('http://localhost:8000/api/auth/registration/', JSON.stringify(data))
+            .then((res) => {
+                dispatch({type: REGISTRATION_SUCCESS, payload: res});
+            })
+            .catch((error) => {
+                dispatch({type: REGISTRATION_FAILURE, payload: error});
+            });
+    }
+};
 
 export const login = (data) => ({
   [RSAA]: {

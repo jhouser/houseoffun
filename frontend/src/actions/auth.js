@@ -22,7 +22,8 @@ export const register = (data) => {
                 dispatch({type: REGISTRATION_SUCCESS, payload: res});
             })
             .catch((error) => {
-                throw new SubmissionError(error.response.data);
+                console.log(error);
+                throw new SubmissionError(error);
             });
     }
 };

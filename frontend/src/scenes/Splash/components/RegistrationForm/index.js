@@ -11,7 +11,7 @@ export class RegistrationForm extends Component {
         const errors = this.props.errors || {};
         const {handleSubmit, submitting} = this.props;
         return <div className="registration" data-testid="userRegistrationForm">
-            <Form onSubmit={handleSubmit(this.props.onSubmit)}>
+            <Form onSubmit={handleSubmit}>
                 {
                     errors.non_field_errors ?
                         <Alert color="danger">

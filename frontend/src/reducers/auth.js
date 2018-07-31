@@ -26,9 +26,7 @@ const authReducer = (state = initialState, action) => {
         case auth.TOKEN_FAILURE:
             return {
                 access: undefined,
-                errors:
-                action.payload.response ||
-                {'non_field_errors': action.payload.statusText},
+                errors: action.payload,
             };
         case auth.LOGOUT:
             return {

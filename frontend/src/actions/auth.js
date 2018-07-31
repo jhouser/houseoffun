@@ -1,5 +1,7 @@
 import { RSAA } from 'redux-api-middleware';
 import axios from 'axios';
+import {SubmissionError} from 'redux-form';
+
 
 export const REGISTRATION_REQUEST = '@@auth/REGISTRATION_REQUEST';
 export const REGISTRATION_SUCCESS = '@@auth/REGISTRATION_SUCCESS';
@@ -20,7 +22,7 @@ export const register = (data) => {
                 dispatch({type: REGISTRATION_SUCCESS, payload: res});
             })
             .catch((error) => {
-                dispatch({type: REGISTRATION_FAILURE, payload: error});
+                throw new SubmissionError(error.response.data);
             });
     }
 };

@@ -15,7 +15,7 @@ export const LOGOUT = '@@auth/LOGOUT';
 export const register = (data) => {
     return (dispatch) => {
         dispatch({type: REGISTRATION_REQUEST});
-        return axios.post('http://localhost:8000/api/auth/registration/', data)
+        return axios.post(process.env.REACT_APP_API_ENDPOINT + '/api/auth/registration/', data)
             .then((res) => {
                 dispatch({type: REGISTRATION_SUCCESS, payload: res});
             })

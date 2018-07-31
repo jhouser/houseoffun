@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const authReducer = (state = initialState, action) => {
-    console.log(action.type);
     if (typeof action === 'undefined') {
         return initialState;
     }

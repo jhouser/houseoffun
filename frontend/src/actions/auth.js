@@ -19,10 +19,9 @@ export const register = (data) => {
         dispatch({type: REGISTRATION_REQUEST});
         return axios.post(process.env.REACT_APP_API_ENDPOINT + '/api/auth/registration/', data)
             .then((res) => {
-                dispatch({type: REGISTRATION_SUCCESS, payload: res});
+                dispatch({type: REGISTRATION_SUCCESS, payload: res.data});
             })
             .catch((error) => {
-                console.log(error.response);
                 throw new SubmissionError(error.response.data);
             });
     }

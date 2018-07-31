@@ -25,6 +25,10 @@ export const register = (data) => {
             })
             .catch((error) => {
                 console.log(error);
+                for (let property in error) {
+                    console.log(property);
+                    console.log(error[property]);
+                }
                 console.log(error.response);
                 console.log(error.response.data);
                 throw new SubmissionError(error.response.data);

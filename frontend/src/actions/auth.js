@@ -22,7 +22,9 @@ export const register = (data) => {
                 dispatch({type: REGISTRATION_SUCCESS, payload: res});
             })
             .catch((error) => {
-                console.log(error);
+                for (let property in error) {
+                    console.log(property);
+                }
                 throw new SubmissionError(error);
             });
     }

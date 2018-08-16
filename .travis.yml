@@ -4,7 +4,6 @@
     matrix:
       - BACKEND=1 FRONTEND=0 TESTS=backend
       - BACKEND=0 FRONTEND=1 TESTS=frontend
-      - BACKEND=1 FRONTEND=1 TESTS=e2e
   language: python
   python:
     - "3.6"

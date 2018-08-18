@@ -48,15 +48,14 @@ class GameViewSet(viewsets.ModelViewSet):
             if plugin is not None and plugin['enabled'] is True:
                 game.plugins.add(index)
 
-    @action(methods=['post'], detail=True, permission_classes=[permissions.IsAuthenticated],
-            url_path='advance-status', url_name='advance_status')
+    @action(methods=['post'], detail=True, permission_classes=[permissions.IsAuthenticated])
     def advance_status(self, request, pk=None):
         game = self.get_object()
         data = request.data
         if 'status' not in data or not game.validate_next_status(data['status']):
             return Response({'non_field_errors': 'Next status is not valid.'}, status=status.HTTP_400_BAD_REQUEST)
         game.next_status()
-        return Response(game)
+        return Response({'status': game.status})
 
     permission_classes = (permissions.IsAuthenticated,)
     queryset = Game.objects.all()

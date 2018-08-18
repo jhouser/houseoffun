@@ -1,5 +1,6 @@
-from rest_framework import serializers, viewsets
-from rest_framework import permissions
+from rest_framework import serializers, viewsets, permissions, status
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from api.app.views.core import UserSerializer, PluginSerializer
 from api.app.views.characters import CharacterSerializer
@@ -46,6 +47,16 @@ class GameViewSet(viewsets.ModelViewSet):
         for index, plugin in enumerate(plugins):
             if plugin is not None and plugin['enabled'] is True:
                 game.plugins.add(index)
+
+    @action(methods=['post'], detail=True, permission_classes=[permissions.IsAuthenticated],
+            url_path='advance-status', url_name='advance_status')
+    def advance_status(self, request, pk=None):
+        game = self.get_object()
+        data = request.data
+        if 'status' not in data or not game.validate_next_status(data['status']):
+            return Response({'non_field_errors': 'Next status is not valid.'}, status=status.HTTP_400_BAD_REQUEST)
+        game.next_status()
+        return Response(game)
 
     permission_classes = (permissions.IsAuthenticated,)
     queryset = Game.objects.all()

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './index.scss';
 import {Row, Col} from 'reactstrap';
+import StatusControls from "../StatusControls";
 
 class GameHeader extends Component {
     render() {
@@ -20,11 +21,14 @@ class GameHeader extends Component {
             </Row>
 
             <Row>
-                <Col sm="12">
+                <Col sm="12" md="1">
                     <div
                         className={`gameHeader__attribute gameHeader__status gameHeader__status-${this.props.get_status_display}`}>
                         {this.props.get_status_display}
                     </div>
+                </Col>
+                <Col sm="12" md="2">
+                    <StatusControls/>
                 </Col>
             </Row>
         </div>

@@ -11,7 +11,6 @@ class GamesTest(APITestCase):
     """
 
     def setUp(self):
-        self.view = GameViewSet()
         self.user = User.objects.create_user(username='test_user', email='test@example.com', password='test_pass')
         self.game = Game.objects.create(
             name='Sample of Fun',

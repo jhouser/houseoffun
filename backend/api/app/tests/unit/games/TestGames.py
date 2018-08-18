@@ -16,6 +16,16 @@ class GamesTest(TestCase):
             game_master=self.user
         )
 
+    def test_validate_next_status(self):
+        # You should only be able to advance to the next status if the provided status is correct
+        self.assertTrue(self.game.validate_next_status(Game.REGISTRATION))
+        self.game.next_status()
+        self.assertTrue(self.game.validate_next_status(Game.PENDING))
+        self.game.next_status()
+        self.assertTrue(self.game.validate_next_status(Game.RUNNING))
+        self.game.next_status()
+        self.assertTrue(self.game.validate_next_status(Game.FINISHED))
+
     def test_advance_to_registration(self):
         # Draft progresses to registration, but has no other effects
         self.assertEqual(Game.DRAFT, self.game.status)

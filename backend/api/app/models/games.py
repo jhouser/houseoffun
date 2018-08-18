@@ -68,6 +68,16 @@ class Game(models.Model):
         elif self.status == self.RUNNING:
             return status == self.FINISHED
 
+    def validate_previous_status(self, status):
+        if self.status == self.REGISTRATION:
+            return status == self.DRAFT
+        elif self.status == self.PENDING:
+            return status == self.REGISTRATION
+        elif self.status == self.RUNNING:
+            return status == self.PENDING
+        elif self.status == self.FINISHED:
+            return status == self.RUNNING
+
     def next_status(self):
         """
         Advances the game to the next status in the list, performing any necessary state changes

@@ -69,3 +69,13 @@ class GamesTest(APITestCase):
         # Sending the same status a second time should fail
         response = self.client.post(url, {'status': self.game.REGISTRATION})
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_games_revert_status(self):
+        self.game.next_status()
+        url = reverse('games-revert-status', args=[self.game.id])
+        response = self.client.post(url, {'status': self.game.DRAFT})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertContains(response, self.game.DRAFT)
+        # Sending the same status a second time should fail
+        response = self.client.post(url, {'status': self.game.DRAFT})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

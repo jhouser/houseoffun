@@ -57,5 +57,14 @@ class GameViewSet(viewsets.ModelViewSet):
         game.next_status()
         return Response({'status': game.status})
 
+    @action(methods=['post'], detail=True, permission_classes=[permissions.IsAuthenticated])
+    def revert_status(self, request, pk=None):
+        game = self.get_object()
+        data = request.data
+        if 'status' not in data or not game.validate_previous_status(data['status']):
+            return Response({'non_field_errors': 'Previous status is not valid.'}, status=status.HTTP_400_BAD_REQUEST)
+        game.previous_status()
+        return Response({'status': game.status})
+
     permission_classes = (permissions.IsAuthenticated,)
     queryset = Game.objects.all()

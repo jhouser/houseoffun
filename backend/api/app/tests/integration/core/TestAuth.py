@@ -27,3 +27,13 @@ class AuthTest(APITestCase):
         response = self.client.post(url, data, format='json')
         # Users can't register with duplicate email/password
         self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_login(self):
+        url = reverse('rest_login')
+        data = {
+            'username': 'test_user',
+            'password': 'test_pass'
+        }
+        response = self.client.post(url, data, format='json')
+        # Users can login
+        self.assertEquals(response.status_code, status.HTTP_200_OK)

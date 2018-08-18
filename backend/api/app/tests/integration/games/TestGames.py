@@ -12,6 +12,8 @@ class GamesTest(APITestCase):
 
     def setUp(self):
         self.user = User.objects.create_user(username='test_user', email='test@example.com', password='test_pass')
+        self.non_gm_user = User.objects.create_user(username='test_non_gm_user', email='test_non_gm@example.com',
+                                                    password='test_pass')
         self.game = Game.objects.create(
             name='Sample of Fun',
             abbreviation='SoF',
@@ -68,6 +70,9 @@ class GamesTest(APITestCase):
         # Sending the same status a second time should fail
         response = self.client.post(url, {'status': self.game.REGISTRATION})
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.client.force_authenticate(user=self.non_gm_user)
+        response = self.client.post(url, {'status': self.game.REGISTRATION})
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_games_revert_status(self):
         self.game.next_status()
@@ -78,3 +83,6 @@ class GamesTest(APITestCase):
         # Sending the same status a second time should fail
         response = self.client.post(url, {'status': self.game.DRAFT})
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.client.force_authenticate(user=self.non_gm_user)
+        response = self.client.post(url, {'status': self.game.REGISTRATION})
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

@@ -51,6 +51,7 @@ class GameViewSet(viewsets.ModelViewSet):
     @action(methods=['post'], detail=True, permission_classes=[permissions.IsAuthenticated])
     def advance_status(self, request, pk=None):
         game = self.get_object()
+        game.can_edit_or_403(request.user)
         data = request.data
         if 'status' not in data or not game.validate_next_status(data['status']):
             return Response({'non_field_errors': 'Next status is not valid.'}, status=status.HTTP_400_BAD_REQUEST)
@@ -60,6 +61,7 @@ class GameViewSet(viewsets.ModelViewSet):
     @action(methods=['post'], detail=True, permission_classes=[permissions.IsAuthenticated])
     def revert_status(self, request, pk=None):
         game = self.get_object()
+        game.can_edit_or_403(request.user)
         data = request.data
         if 'status' not in data or not game.validate_previous_status(data['status']):
             return Response({'non_field_errors': 'Previous status is not valid.'}, status=status.HTTP_400_BAD_REQUEST)

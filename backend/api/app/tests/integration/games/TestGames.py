@@ -45,6 +45,17 @@ class GamesTest(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+    def test_games_update(self):
+        url = reverse('games-detail', args=[self.game.id])
+        data = {
+            'name': 'Test A New Game',
+            'abbreviation': 'TANG',
+            'description': 'This is a test description',
+        }
+        response = self.client.put(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertContains(response, data['name'])
+
     def test_games_advance_status(self):
         url = reverse('games-advance-status', args=[self.game.id])
         response = self.client.post(url, {'status': self.game.REGISTRATION})

@@ -28,7 +28,7 @@ class GameHeader extends Component {
                     </div>
                 </Col>
                 <Col sm="12" md="2">
-                    <StatusControls/>
+                    <StatusControls status={this.props.get_status_display}/>
                 </Col>
             </Row>
         </div>

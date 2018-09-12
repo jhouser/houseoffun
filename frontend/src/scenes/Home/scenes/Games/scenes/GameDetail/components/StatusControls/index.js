@@ -5,23 +5,33 @@ import {Row, Col, Button} from 'reactstrap';
 const statuses = {
     'Draft': {
         'prev': undefined,
-        'next': 'Recruiting'
+        'next': 'Recruiting',
+        'nextCode': 'RG',
+        'prevCode': undefined
     },
     'Recruiting': {
         'prev': 'Draft',
-        'next': 'Pending'
+        'next': 'Pending',
+        'nextCode': 'DR',
+        'prevCode': 'PD'
     },
     'Pending': {
         'prev': 'Recruiting',
-        'next': 'Running'
+        'next': 'Running',
+        'nextCode': 'RN',
+        'prevCode': 'RG'
     },
     'Running': {
         'prev': 'Pending',
-        'next': 'Finished'
+        'next': 'Finished',
+        'nextCode': 'FN',
+        'prevCode': 'PD'
     },
     'Finished': {
         'prev': 'Running',
-        'next': 'Undefined'
+        'next': 'Undefined',
+        'nextCode': undefined,
+        'prevCode': 'RN'
     },
 };
 
@@ -41,7 +51,7 @@ class StatusControls extends Component {
                     // Only show next button if there is a 'next' status defined
                     statuses[status].next !== undefined ?
                         <Col sm="6">
-                            <Button onClick={() => this.props.advanceClick(this.props.id, this.props.status)} color="primary">Advance to {statuses[status].next}</Button>
+                            <Button onClick={() => this.props.advanceClick(this.props.id, statuses[this.props.status].nextCode)} color="primary">Advance to {statuses[status].next}</Button>
                         </Col> : ""
                 }
             </Row>

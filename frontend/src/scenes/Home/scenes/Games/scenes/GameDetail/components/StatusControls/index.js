@@ -12,8 +12,8 @@ const statuses = {
     'Recruiting': {
         'prev': 'Draft',
         'next': 'Pending',
-        'nextCode': 'DR',
-        'prevCode': 'PD'
+        'nextCode': 'PD',
+        'prevCode': 'DR'
     },
     'Pending': {
         'prev': 'Recruiting',

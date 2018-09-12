@@ -41,7 +41,7 @@ class StatusControls extends Component {
                     // Only show next button if there is a 'next' status defined
                     statuses[status].next !== undefined ?
                         <Col sm="6">
-                            <Button color="primary">Advance to {statuses[status].next}</Button>
+                            <Button onClick={() => this.props.advanceClick(this.props.id, this.props.status)} color="primary">Advance to {statuses[status].next}</Button>
                         </Col> : ""
                 }
             </Row>

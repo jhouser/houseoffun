@@ -54,7 +54,7 @@ class StatusControls extends Component {
                     // Only show revert button if there is a 'prev' status defined
                     statuses[status].prev !== undefined ?
                         <Col sm="6">
-                            <Button color="secondary">{statuses[status].prevText}</Button>
+                            <Button onClick={() => this.props.revertClick(this.props.id, statuses[this.props.status].prevCode)} color="secondary">{statuses[status].prevText}</Button>
                         </Col> : ""
                 }
                 {

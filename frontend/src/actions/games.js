@@ -19,6 +19,10 @@ export const ADVANCE_STATUS_REQUEST = '@@games/ADVANCE_STATUS_REQUEST';
 export const ADVANCE_STATUS_SUCCESS = '@@games/ADVANCE_STATUS_SUCCESS';
 export const ADVANCE_STATUS_FAILURE = '@@games/ADVANCE_STATUS_FAILURE';
 
+export const REVERT_STATUS_REQUEST = '@@games/REVERT_STATUS_REQUEST';
+export const REVERT_STATUS_SUCCESS = '@@games/REVERT_STATUS_SUCCESS';
+export const REVERT_STATUS_FAILURE = '@@games/REVERT_STATUS_FAILURE';
+
 
 export const gameList = () => ({
   [RSAA]: {
@@ -67,6 +71,23 @@ export const advanceStatus = (id, status) => {
             }
         ).then((res) => {
             dispatch({type: ADVANCE_STATUS_SUCCESS, payload: res.data});
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+};
+
+export const revertStatus = (id, status) => {
+    return (dispatch, getState) => {
+        dispatch({type: REVERT_STATUS_REQUEST});
+        return axios.post(
+            process.env.REACT_APP_API_ENDPOINT + '/api/games/' + id + '/revert_status/',
+            {status: status},
+            {
+                headers: withAuth({'Content-Type': 'application/json'})(getState())
+            }
+        ).then((res) => {
+            dispatch({type: REVERT_STATUS_SUCCESS, payload: res.data});
         }).catch((error) => {
             console.log(error);
         });

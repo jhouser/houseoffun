@@ -56,7 +56,8 @@ class GameViewSet(viewsets.ModelViewSet):
         if 'status' not in data or not game.validate_next_status(data['status']):
             return Response({'non_field_errors': 'Next status is not valid.'}, status=status.HTTP_400_BAD_REQUEST)
         game.next_status()
-        return Response({'status': game.status})
+        serializer = self.get_serializer(game)
+        return Response(serializer.data)
 
     @action(methods=['post'], detail=True, permission_classes=[permissions.IsAuthenticated])
     def revert_status(self, request, pk=None):
@@ -66,7 +67,8 @@ class GameViewSet(viewsets.ModelViewSet):
         if 'status' not in data or not game.validate_previous_status(data['status']):
             return Response({'non_field_errors': 'Previous status is not valid.'}, status=status.HTTP_400_BAD_REQUEST)
         game.previous_status()
-        return Response({'status': game.status})
+        serializer = self.get_serializer(game)
+        return Response(serializer.data)
 
     permission_classes = (permissions.IsAuthenticated,)
     queryset = Game.objects.all()

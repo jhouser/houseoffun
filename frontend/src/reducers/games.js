@@ -17,6 +17,8 @@ const gameReducer = (state = initialState, action) => {
                 list: action.payload
             };
         case gameActions.GAME_DETAIL_SUCCESS:
+        case gameActions.ADVANCE_STATUS_SUCCESS:
+        case gameActions.REVERT_STATUS_SUCCESS:
             return {
                 details: action.payload
             };

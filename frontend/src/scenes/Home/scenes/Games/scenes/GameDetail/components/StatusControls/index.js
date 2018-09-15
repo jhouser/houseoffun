@@ -5,33 +5,43 @@ import {Row, Col, Button} from 'reactstrap';
 const statuses = {
     'Draft': {
         'prev': undefined,
+        'prevCode': undefined,
+        'prevText': undefined,
         'next': 'Recruiting',
         'nextCode': 'RG',
-        'prevCode': undefined
+        'nextText': 'Publish'
     },
     'Recruiting': {
         'prev': 'Draft',
+        'prevCode': 'DR',
+        'prevText': 'Back to Draft',
         'next': 'Pending',
         'nextCode': 'PD',
-        'prevCode': 'DR'
+        'nextText': 'Close Registration'
     },
     'Pending': {
         'prev': 'Recruiting',
+        'prevCode': 'RG',
+        'prevText': 'Re-open Registration',
         'next': 'Running',
         'nextCode': 'RN',
-        'prevCode': 'RG'
+        'nextText': 'Start Game'
     },
     'Running': {
         'prev': 'Pending',
+        'prevCode': 'PD',
+        'prevText': 'Undo Start',
         'next': 'Finished',
         'nextCode': 'FN',
-        'prevCode': 'PD'
+        'nextText': 'End Game'
     },
     'Finished': {
         'prev': 'Running',
-        'next': 'Undefined',
+        'prevCode': 'RN',
+        'prevText': 'Re-activate Game',
+        'next': undefined,
         'nextCode': undefined,
-        'prevCode': 'RN'
+        'nextText': undefined
     },
 };
 
@@ -44,14 +54,14 @@ class StatusControls extends Component {
                     // Only show revert button if there is a 'prev' status defined
                     statuses[status].prev !== undefined ?
                         <Col sm="6">
-                            <Button color="secondary">Revert to {statuses[status].prev}</Button>
+                            <Button color="secondary">{statuses[status].prevText}</Button>
                         </Col> : ""
                 }
                 {
                     // Only show next button if there is a 'next' status defined
                     statuses[status].next !== undefined ?
                         <Col sm="6">
-                            <Button onClick={() => this.props.advanceClick(this.props.id, statuses[this.props.status].nextCode)} color="primary">Advance to {statuses[status].next}</Button>
+                            <Button onClick={() => this.props.advanceClick(this.props.id, statuses[this.props.status].nextCode)} color="primary">{statuses[status].nextText}</Button>
                         </Col> : ""
                 }
             </Row>

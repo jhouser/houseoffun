@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/bash
 python manage.py sqlflush | python manage.py dbshell
 directory="api/app/fixtures/*"
-for file in $directory
+for file in ${directory}
 do
-	python manage.py loaddata $file
+	python manage.py loaddata ${file}
 done

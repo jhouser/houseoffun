@@ -1,5 +1,7 @@
-from rest_framework import serializers, viewsets
-from rest_framework import permissions
+from django.core.exceptions import ValidationError
+from rest_framework import serializers, viewsets, permissions, status
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from api.app.views.core import UserSerializer, PluginSerializer
 from api.app.views.characters import CharacterSerializer
@@ -19,7 +21,7 @@ class GameSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Game
-        fields = ('id', 'name', 'abbreviation', 'get_status_display', 'game_master')
+        fields = ('id', 'name', 'abbreviation', 'status', 'get_status_display', 'game_master')
 
 
 class GameDetailSerializer(GameSerializer):
@@ -30,8 +32,8 @@ class GameDetailSerializer(GameSerializer):
     class Meta:
         model = Game
         fields = (
-            'id', 'name', 'abbreviation', 'plugins', 'description', 'character_guidelines', 'get_status_display',
-            'game_master', 'signups', 'characters')
+            'id', 'name', 'abbreviation', 'plugins', 'description', 'character_guidelines', 'status',
+            'get_status_display', 'game_master', 'signups', 'characters')
 
 
 class GameViewSet(viewsets.ModelViewSet):
@@ -46,6 +48,31 @@ class GameViewSet(viewsets.ModelViewSet):
         for index, plugin in enumerate(plugins):
             if plugin is not None and plugin['enabled'] is True:
                 game.plugins.add(index)
+
+    @action(methods=['post'], detail=True, permission_classes=[permissions.IsAuthenticated])
+    def advance_status(self, request, pk=None):
+        game = self.get_object()
+        game.can_edit_or_403(request.user)
+        data = request.data
+        if 'status' not in data or not game.validate_next_status(data['status']):
+            return Response({'non_field_errors': 'Next status is not valid.'}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            game.next_status()
+            serializer = self.get_serializer(game)
+            return Response(serializer.data)
+        except ValidationError as err:
+            return Response({'non_field_errors': err}, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(methods=['post'], detail=True, permission_classes=[permissions.IsAuthenticated])
+    def revert_status(self, request, pk=None):
+        game = self.get_object()
+        game.can_edit_or_403(request.user)
+        data = request.data
+        if 'status' not in data or not game.validate_previous_status(data['status']):
+            return Response({'non_field_errors': 'Previous status is not valid.'}, status=status.HTTP_400_BAD_REQUEST)
+        game.previous_status()
+        serializer = self.get_serializer(game)
+        return Response(serializer.data)
 
     permission_classes = (permissions.IsAuthenticated,)
     queryset = Game.objects.all()

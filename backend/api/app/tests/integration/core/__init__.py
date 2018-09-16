@@ -1,0 +1,1 @@
+from api.app.tests.integration.core.TestAuth import *

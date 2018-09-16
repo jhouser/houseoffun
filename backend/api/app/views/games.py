@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from rest_framework import serializers, viewsets, permissions, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -55,9 +56,12 @@ class GameViewSet(viewsets.ModelViewSet):
         data = request.data
         if 'status' not in data or not game.validate_next_status(data['status']):
             return Response({'non_field_errors': 'Next status is not valid.'}, status=status.HTTP_400_BAD_REQUEST)
-        game.next_status()
-        serializer = self.get_serializer(game)
-        return Response(serializer.data)
+        try:
+            game.next_status()
+            serializer = self.get_serializer(game)
+            return Response(serializer.data)
+        except ValidationError as err:
+            return Response({'non_field_errors': err}, status=status.HTTP_400_BAD_REQUEST)
 
     @action(methods=['post'], detail=True, permission_classes=[permissions.IsAuthenticated])
     def revert_status(self, request, pk=None):

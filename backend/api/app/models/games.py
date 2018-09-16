@@ -131,7 +131,7 @@ class Game(models.Model):
             except DatabaseError:
                 pass
         else:
-            raise ValidationError('All user signups must be accepted, rejected, or withdrawn before continuing.')
+            raise ValidationError('All user sign-ups must be accepted, rejected, or withdrawn before continuing.')
 
     def _revert_to_registration(self):
         """

@@ -72,7 +72,7 @@ export const advanceStatus = (id, status) => {
         ).then((res) => {
             dispatch({type: ADVANCE_STATUS_SUCCESS, payload: res.data});
         }).catch((error) => {
-            console.log(error);
+            dispatch({type: ADVANCE_STATUS_FAILURE, payload: error.response.data})
         });
     }
 };

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './index.scss';
-import {Row, Tooltip, Button} from 'reactstrap';
+import {Row, Tooltip, Button, Alert} from 'reactstrap';
 
 const statuses = {
     'Draft': {
@@ -79,15 +79,15 @@ class StatusControls extends Component {
     }
 
     toggleRevert() {
-        this.setState({
-            revertButtonTooltipOpen: !this.state.revertButtonTooltipOpen
-        });
+        // this.setState({
+        //     revertButtonTooltipOpen: !this.state.revertButtonTooltipOpen
+        // });
     }
 
     toggleAdvance() {
-        this.setState({
-            advanceButtonTooltipOpen: !this.state.advanceButtonTooltipOpen
-        });
+        // this.setState({
+        //     advanceButtonTooltipOpen: !this.state.advanceButtonTooltipOpen
+        // });
     }
 
     revertStatus() {
@@ -104,7 +104,15 @@ class StatusControls extends Component {
 
     render() {
         const status = this.props.status || 'Draft';
+        const errors = this.props.errors || {};
         return <div className="gameHeader__status-controls">
+            <Row>
+                {
+                    errors.non_field_errors ?
+                        <Alert color="danger">{errors.non_field_errors}</Alert>
+                        : ""
+                }
+            </Row>
             <Row>
                 {
                     // Only show revert button if there is a 'prev' status defined

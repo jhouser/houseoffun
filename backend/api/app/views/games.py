@@ -21,7 +21,7 @@ class GameSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Game
-        fields = ('id', 'name', 'abbreviation', 'get_status_display', 'game_master')
+        fields = ('id', 'name', 'abbreviation', 'status', 'get_status_display', 'game_master')
 
 
 class GameDetailSerializer(GameSerializer):
@@ -32,8 +32,8 @@ class GameDetailSerializer(GameSerializer):
     class Meta:
         model = Game
         fields = (
-            'id', 'name', 'abbreviation', 'plugins', 'description', 'character_guidelines', 'get_status_display',
-            'game_master', 'signups', 'characters')
+            'id', 'name', 'abbreviation', 'plugins', 'description', 'character_guidelines', 'status',
+            'get_status_display', 'game_master', 'signups', 'characters')
 
 
 class GameViewSet(viewsets.ModelViewSet):

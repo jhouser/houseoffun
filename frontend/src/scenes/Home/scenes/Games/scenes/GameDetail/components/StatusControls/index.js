@@ -79,15 +79,15 @@ class StatusControls extends Component {
     }
 
     toggleRevert() {
-        // this.setState({
-        //     revertButtonTooltipOpen: !this.state.revertButtonTooltipOpen
-        // });
+        this.setState({
+            revertButtonTooltipOpen: !this.state.revertButtonTooltipOpen
+        });
     }
 
     toggleAdvance() {
-        // this.setState({
-        //     advanceButtonTooltipOpen: !this.state.advanceButtonTooltipOpen
-        // });
+        this.setState({
+            advanceButtonTooltipOpen: !this.state.advanceButtonTooltipOpen
+        });
     }
 
     revertStatus() {

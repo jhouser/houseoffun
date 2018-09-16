@@ -28,7 +28,7 @@ class GameHeader extends Component {
                     </div>
                 </Col>
                 { this.props.isGameMaster ?
-                    <Col sm="12" md="2">
+                    <Col sm="12" md="3">
                         <ConnectedStatusControls id={this.props.id} status={this.props.get_status_display}/>
                     </Col> : ""
                 }

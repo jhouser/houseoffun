@@ -53,16 +53,16 @@ class StatusControls extends Component {
                 {
                     // Only show revert button if there is a 'prev' status defined
                     statuses[status].prev !== undefined ?
-                        <Col sm="6">
+                        <div className="gameHeader__status-control-button">
                             <Button onClick={() => this.props.revertClick(this.props.id, statuses[this.props.status].prevCode)} color="secondary">{statuses[status].prevText}</Button>
-                        </Col> : ""
+                        </div> : ""
                 }
                 {
                     // Only show next button if there is a 'next' status defined
                     statuses[status].next !== undefined ?
-                        <Col sm="6">
+                        <div className="gameHeader__status-control-button">
                             <Button onClick={() => this.props.advanceClick(this.props.id, statuses[this.props.status].nextCode)} color="primary">{statuses[status].nextText}</Button>
-                        </Col> : ""
+                        </div> : ""
                 }
             </Row>
         </div>

@@ -3,7 +3,7 @@ import {withRouter} from "react-router-dom";
 import {connect} from 'react-redux';
 import {formApiAdapter} from "app/util/forms";
 import GameHeader from "../../components/GameHeader";
-import {isGameMaster} from "app/reducers/games";
+import {isGameMaster, gameErrors} from "app/reducers/games";
 
 const ConnectedGameHeader = (props) => {
     return (
@@ -12,7 +12,8 @@ const ConnectedGameHeader = (props) => {
 };
 /* istanbul ignore next */
 const mapStateToProps = state => ({
-    isGameMaster: isGameMaster(state)
+    isGameMaster: isGameMaster(state),
+    errors: gameErrors(state)
 });
 /* istanbul ignore next */
 const mapDispatchToProps = dispatch => ({

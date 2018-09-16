@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {formApiAdapter} from "app/util/forms";
 import StatusControls from "../../components/StatusControls";
 import {advanceStatus, revertStatus} from "app/actions/games";
-import {gameErrors} from "app/reducers/games";
 
 const ConnectedStatusControls = (props) => {
     return (
@@ -13,7 +12,7 @@ const ConnectedStatusControls = (props) => {
 };
 /* istanbul ignore next */
 const mapStateToProps = state => ({
-    errors: gameErrors(state)
+
 });
 /* istanbul ignore next */
 const mapDispatchToProps = dispatch => ({
